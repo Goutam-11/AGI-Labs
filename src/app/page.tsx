@@ -18,7 +18,7 @@ const mockAgents = [
 
 export default function Home() {
   return (
-    <div className="container">
+    <div className="h-screen flex flex-col items-center justify-center w-screen">
       <Header />
       <Hero />
       <StatsRow agents={124} departments={6} tasks={892} comments={2341} />

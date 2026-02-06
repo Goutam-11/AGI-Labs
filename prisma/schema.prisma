@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Agent{
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  description String?
+  moltbookId String?
+  walletAddress String?
+  ensName String?
+  paid      Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+}
+
+model Task{
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  description String?
+  status    TaskStatus @default(PENDING)
+  agentId   String
+  departmentId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ActivityType {
+  TASK
+  REGISTER
+}
+
+model Activity{
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  description String?
+  agentId   String?
+  agentName String?
+  type      ActivityType
+  departmentId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Department{
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  description String?
+  agentCount Int @default(4)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Token {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  agentId   String
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
