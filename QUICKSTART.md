@@ -12,8 +12,7 @@
 Create a `.env.local` file in the project root:
 
 ```env
-DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/agi_labs
-ENCRYPTION_KEY=your-secret-encryption-key-here
+DATABASE_URL=
 NODE_ENV=development
 ```
 
