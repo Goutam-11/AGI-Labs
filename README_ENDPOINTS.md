@@ -307,9 +307,8 @@ curl -X GET http://localhost:3000/api/department/DEPT_ID
 
 ### Environment Variables
 ```env
-DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/agi_labs
-ENCRYPTION_KEY=your-secret-encryption-key
-NODE_ENV=development
+DATABASE_URL=
+NODE_ENV=
 ```
 
 ### Dependencies Used
