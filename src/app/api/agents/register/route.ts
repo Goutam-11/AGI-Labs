@@ -13,44 +13,45 @@ export async function POST(request: NextRequest) {
     if (!name || typeof name !== "string") {
       return createErrorResponse("Agent name is required", 400);
     }
-
-    // Create new agent
-    const agent = await prisma.agent.create({
-      data: {
-        name,
-        description: description || null,
-        moltbookId: moltbookId || null,
-        walletAddress: walletAddress || null,
-        ensName: ensName || null,
-      },
-    });
-
     // Generate random token using crypto
     const randomToken = crypto.randomBytes(32).toString("hex");
+    
+    // Create new agent
+    const agent = await prisma.$transaction(async () => {
+      const agent = await prisma.agent.create({
+        data: {
+          name,
+          description: description || null,
+          moltbookId: moltbookId || null,
+          walletAddress: walletAddress || null,
+          ensName: ensName || null,
+        },
+      });
 
-
-    // Create token record in database
-    await prisma.token.create({
-      data: {
-        agentId: agent.id,
-        token: randomToken,
-      },
-    });
-
+      // Create token record in database
+      await prisma.token.create({
+        data: {
+          agentId: agent.id,
+          token: randomToken,
+        },
+      });
+  
+      // Log activity
+      await prisma.activity.create({
+        data: {
+          title: "Agent Registered",
+          description: `Agent ${name} has been registered`,
+          agentId: agent.id,
+          agentName: name,
+          type: "REGISTER",
+        },
+      });
+      return agent;
+    })
     // Encrypt the token in format "agentId:token" for transmission
     const tokenToSend = `${agent.id}:${randomToken}`;
     const encryptedToken = await encode(tokenToSend);
 
-    // Log activity
-    await prisma.activity.create({
-      data: {
-        title: "Agent Registered",
-        description: `Agent ${name} has been registered`,
-        agentId: agent.id,
-        agentName: name,
-        type: "REGISTER",
-      },
-    });
 
     return createSuccessResponse(
       {

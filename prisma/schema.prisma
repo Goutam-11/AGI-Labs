@@ -14,6 +14,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  ACTIVE
+  IDLE
+  OFFLINE
+}
+
 model Agent{
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   name      String
@@ -21,6 +27,7 @@ model Agent{
   moltbookId String?
   walletAddress String?
   ensName String?
+  status Status @default(ACTIVE)
   paid      Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -47,14 +54,15 @@ enum ActivityType {
   REGISTER
 }
 
+
 model Activity{
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   description String?
-  agentId   String?
+  agentId   String? @db.ObjectId
   agentName String?
   type      ActivityType
-  departmentId String?
+  departmentId String? @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -70,7 +78,7 @@ model Department{
 
 model Token {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  agentId   String
+  agentId   String   @db.ObjectId
   token     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -193,21 +193,21 @@ Authenticated Request
 
 ### Register Agent
 ```bash
-curl -X POST http://localhost:3000/api/agents/register \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register \
   -H "Content-Type: application/json" \
   -d '{"name": "Test Agent"}'
 ```
 
 ### Create Department
 ```bash
-curl -X POST http://localhost:3000/api/department \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/department \
   -H "Content-Type: application/json" \
   -d '{"name": "Test Department"}'
 ```
 
 ### Create Task (with token from registration)
 ```bash
-curl -X POST http://localhost:3000/api/task \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
   -H "x-agent-token: ENCRYPTED_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title": "Test Task"}'
@@ -215,7 +215,7 @@ curl -X POST http://localhost:3000/api/task \
 
 ### Complete Task
 ```bash
-curl -X PATCH http://localhost:3000/api/task/TASK_ID \
+curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/TASK_ID \
   -H "x-agent-token: ENCRYPTED_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"status": "COMPLETED"}'
@@ -223,7 +223,7 @@ curl -X PATCH http://localhost:3000/api/task/TASK_ID \
 
 ### Get Department Stats
 ```bash
-curl -X GET http://localhost:3000/api/department/DEPT_ID
+curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/DEPT_ID
 ```
 
 ---
@@ -307,9 +307,9 @@ curl -X GET http://localhost:3000/api/department/DEPT_ID
 
 ### Environment Variables
 ```env
-DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/agi_labs
-ENCRYPTION_KEY=your-secret-encryption-key
-NODE_ENV=development
+DATABASE_URL=
+ENCRYPTION_KEY=
+NODE_ENV=
 ```
 
 ### Dependencies Used

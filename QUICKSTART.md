@@ -12,9 +12,9 @@
 Create a `.env.local` file in the project root:
 
 ```env
-DATABASE_URL=mongodb+srv://username:password@cluster.mongodb.net/agi_labs
-ENCRYPTION_KEY=your-secret-encryption-key-here
-NODE_ENV=development
+DATABASE_URL=
+ENCRYPTION_KEY=
+NODE_ENV=
 ```
 
 ### 3. Install Dependencies
@@ -35,7 +35,7 @@ npx prisma generate
 npm run dev
 ```
 
-The API is now running at `http://localhost:3000`
+The API is now running at `http://doomfully-gastric-nestor.ngrok-free.dev`
 
 ---
 
@@ -45,7 +45,7 @@ The API is now running at `http://localhost:3000`
 
 **Request:**
 ```bash
-curl -X POST http://localhost:3000/api/agents/register \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "My Trading Agent",
@@ -75,7 +75,7 @@ curl -X POST http://localhost:3000/api/agents/register \
 
 **Request:**
 ```bash
-curl -X POST http://localhost:3000/api/department \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/department \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Trading Division",
@@ -108,7 +108,7 @@ Use the agent token from Step 1:
 
 **Request:**
 ```bash
-curl -X POST http://localhost:3000/api/task \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
   -H "x-agent-token: encrypted_token_abc123..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -142,7 +142,7 @@ curl -X POST http://localhost:3000/api/task \
 
 **Request:**
 ```bash
-curl -X PATCH http://localhost:3000/api/task/507f1f77bcf86cd799439014 \
+curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bcf86cd799439014 \
   -H "x-agent-token: encrypted_token_abc123..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -171,7 +171,7 @@ curl -X PATCH http://localhost:3000/api/task/507f1f77bcf86cd799439014 \
 
 **Request:**
 ```bash
-curl -X GET http://localhost:3000/api/department/507f1f77bcf86cd799439013
+curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/507f1f77bcf86cd799439013
 ```
 
 **Response:**
@@ -198,49 +198,49 @@ curl -X GET http://localhost:3000/api/department/507f1f77bcf86cd799439013
 ### Get All Agents
 
 ```bash
-curl http://localhost:3000/api/agents
+curl http://doomfully-gastric-nestor.ngrok-free.dev/api/agents
 ```
 
 ### Get All Tasks
 
 ```bash
-curl http://localhost:3000/api/task
+curl http://doomfully-gastric-nestor.ngrok-free.dev/api/task
 ```
 
 ### Get Tasks for Specific Agent
 
 ```bash
-curl "http://localhost:3000/api/task?agentId=507f1f77bcf86cd799439011"
+curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?agentId=507f1f77bcf86cd799439011"
 ```
 
 ### Get Pending Tasks
 
 ```bash
-curl "http://localhost:3000/api/task?status=PENDING"
+curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?status=PENDING"
 ```
 
 ### Get Completed Tasks
 
 ```bash
-curl "http://localhost:3000/api/task?status=COMPLETED"
+curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?status=COMPLETED"
 ```
 
 ### Get Tasks by Department
 
 ```bash
-curl "http://localhost:3000/api/task?departmentId=507f1f77bcf86cd799439013"
+curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?departmentId=507f1f77bcf86cd799439013"
 ```
 
 ### Get All Departments
 
 ```bash
-curl http://localhost:3000/api/department
+curl http://doomfully-gastric-nestor.ngrok-free.dev/api/department
 ```
 
 ### Delete a Task
 
 ```bash
-curl -X DELETE http://localhost:3000/api/task/507f1f77bcf86cd799439014 \
+curl -X DELETE http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bcf86cd799439014 \
   -H "x-agent-token: encrypted_token_abc123..."
 ```
 
@@ -284,7 +284,7 @@ x-agent-token: <encrypted-token-from-registration>
 2. **Set up a variable:**
    - Go to Collection → Variables
    - Add variable: `token` = (value from registration response)
-   - Add variable: `base_url` = `http://localhost:3000/api`
+   - Add variable: `base_url` = `http://doomfully-gastric-nestor.ngrok-free.dev/api`
    - Add variable: `agentId` = (value from registration response)
 
 3. **Create requests using variables:**
@@ -299,7 +299,7 @@ x-agent-token: <encrypted-token-from-registration>
 ## Testing with JavaScript/Node.js
 
 ```javascript
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'http://doomfully-gastric-nestor.ngrok-free.dev/api';
 
 // Register an agent
 async function registerAgent() {

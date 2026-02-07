@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+// import { NextRequest } from 'next/server';
 import prisma from '@/lib/db';
 import { createErrorResponse, createSuccessResponse } from '@/lib/auth';
 
@@ -7,7 +7,7 @@ import { createErrorResponse, createSuccessResponse } from '@/lib/auth';
  * Get all departments
  * Public endpoint - no authentication required
  */
-export async function GET(request: NextRequest) {
+export async function GET(/*request: NextRequest*/) {
   try {
     const departments = await prisma.department.findMany({
       orderBy: {

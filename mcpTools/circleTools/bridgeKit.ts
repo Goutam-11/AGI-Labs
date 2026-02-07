@@ -1,5 +1,6 @@
 // Import Bridge Kit and its dependencies
-import { BridgeChainIdentifier, BridgeKit } from "@circle-fin/bridge-kit";
+import type { BridgeChainIdentifier } from "@circle-fin/bridge-kit";
+import { BridgeKit } from "@circle-fin/bridge-kit";
 import { createViemAdapterFromPrivateKey } from "@circle-fin/adapter-viem-v2";
 import { inspect } from "util";
 
@@ -20,9 +21,9 @@ export const bridgeUSDC = async ({
     const kit = new BridgeKit();
     // Initialize the adapter which lets you transfer tokens from your wallet on any EVM-compatible chain
     const adapter = createViemAdapterFromPrivateKey({
-      privateKey: process.env.PRIVATE_KEY as string,
+      privateKey: process.env.EVM_PRIVATE_KEY as string,
     });
-
+    console.log("amount", amount);
     // Use the same adapter for the source and destination blockchains
     const result = await kit.bridge({
       from: { adapter, chain: sourceChainName },

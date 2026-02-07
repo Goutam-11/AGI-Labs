@@ -1,20 +1,59 @@
-async function streamMcpToolCall() {
-  const response = await fetch("http://localhost:3000/mcp", {
+const url = "http://localhost:5000/mcp"
+async function initialize() {
+  const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json, text/event-stream",
-      "mcp-session-id": "81f7323a-3cd9-40a3-b8e7-3f4082e2115d"
 
     },
     body: JSON.stringify({
       jsonrpc: "2.0",
       id: 1,
-      method: "tools/call", // Or use "tools/call" for bridging
+      method: "initialize", // Or use "tools/call" for bridging
       params: {
-        "name": "balance_of_gateway_wallet",
-        "arguments": {}
+        "protocolVersion": "2024-11-05",
+        "capabilities": {},
+        "clientInfo": { "name": "test-client", "version": "1.0.0" }
       }
+    }),
+  })
+  
+  // 1. EXTRACT THE SESSION ID
+    const sessionId = response.headers.get("mcp-session-id");
+    
+    if (!sessionId) {
+      console.error("❌ Failed to get mcp-session-id from server");
+      return null;
+    }
+  
+    console.log(`🔑 Obtained Session ID: ${sessionId}`);
+  
+    // We still need to consume the body to complete the request
+    if (response.body) {
+      const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+      const { value } = await reader.read();
+      // Optional: Log the init result
+      console.log("📥 Init Response:", value?.trim());
+    }
+  
+    return sessionId;
+}
+
+async function streamMcpToolCall(sessionId:string,method: string, params:object) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json, text/event-stream",
+      "mcp-session-id": sessionId
+
+    },
+    body: JSON.stringify({
+      jsonrpc: "2.0",
+      id: 1,
+      method: method, // Or use "tools/call" for bridging
+      params: params
     }),
   });
 
@@ -45,8 +84,8 @@ async function streamMcpToolCall() {
           if (parsed.result) {
             console.log("✅ Final result reached.");
           }
-        } catch (e) {
-          console.error("Error parsing stream chunk:", jsonString);
+        } catch (err) {
+          console.error("Error parsing stream chunk:", jsonString," Error:",err);
         }
       } else if (line.startsWith("event: ")) {
         console.log("🔔 Event Type:", line.replace("event: ", "").trim());
@@ -57,4 +96,37 @@ async function streamMcpToolCall() {
   console.log("--- Stream Closed ---");
 }
 
-streamMcpToolCall().catch(console.error);
+const method = "tools/call";
+const params = {
+  name: "bridge_usdc",
+  arguments: {
+    sourceChainName: "Arc_Testnet",
+    destinationChainName: "Base_Sepolia",
+    amount: "1"
+  }
+};
+// const method = "tools/list";
+// const params = {
+//   // name: "bridge_usdc",
+//   // arguments: {
+//   //   sourceChainName: "Arc_Testnet",
+//   //   destianationChainName: "",
+//   //   amount: "1"
+//   // }
+// };
+
+// 2. CHAIN THE FUNCTIONS
+async function runTest() {
+  const sessionId = await initialize();
+  
+  if (sessionId) {
+      await streamMcpToolCall(sessionId,method,params);
+    }
+  else {
+    console.log("❌ Session ID not available in header.");
+    }
+    
+}
+
+runTest().catch(console.error);
+// 
