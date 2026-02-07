@@ -13,8 +13,7 @@ Create a `.env.local` file in the project root:
 
 ```env
 DATABASE_URL=
-ENCRYPTION_KEY=
-NODE_ENV=
+NODE_ENV=development
 ```
 
 ### 3. Install Dependencies

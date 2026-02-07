@@ -308,7 +308,6 @@ curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/DEPT_I
 ### Environment Variables
 ```env
 DATABASE_URL=
-ENCRYPTION_KEY=
 NODE_ENV=
 ```
 
