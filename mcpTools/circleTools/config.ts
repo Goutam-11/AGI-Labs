@@ -8,6 +8,7 @@ import {
   seiTestnet,
   sonicTestnet,
   worldchainSepolia,
+  // monadTestnet
 } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 
@@ -26,6 +27,7 @@ export const GATEWAY_MINTER_ADDRESS: Address =
   "0x0022222ABE238Cc2C7Bb1f21003F0a260052475B";
 
 /* Chain Configuration */
+
 export const chainConfigs = {
   sepolia: {
     chain: sepolia,
@@ -67,6 +69,11 @@ export const chainConfigs = {
     usdcAddress: "0x66145f38cBAC35Ca6F1Dfb4914dF98F1614aeA88" as Address,
     domainId: 14,
   },
+  // monadTestnet: {
+  //   chain: monadTestnet,
+  //   usdcAddress: "0x534b2f3A21130d7a60830c2Df862319e593943A3" as Address,
+  //   domainId: 15,
+  // }
 } as const;
 
 export type ChainKey = keyof typeof chainConfigs;
@@ -78,7 +85,8 @@ export enum chains {
   hyperliquidEvmTestnet = "hyperliquidEvmTestnet",
   seiTestnet = "seiTestnet",
   sonicTestnet = "sonicTestnet",
-  worldchainSepolia = "worldchainSepolia"
+  worldchainSepolia = "worldchainSepolia",
+  // monadTestnet = "monadTestnet"
 };
 
 

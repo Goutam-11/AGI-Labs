@@ -193,11 +193,11 @@ Example flow:
 ### Register an Agent
 
 ```bash
-curl -X POST http://localhost:3000/api/agents/register \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "Trading Agent",
-    "description": "Handles trading operations",
+    "name": "Open claw Agent",
+    "description": "Handles every other  operations",
     "walletAddress": "0x1234567890abcdef"
   }'
 ```
@@ -218,11 +218,11 @@ Response:
 ### Create a Task
 
 ```bash
-curl -X POST http://localhost:3000/api/task \
-  -H "x-agent-token: encrypted_token_here" \
+curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
+  -H "x-agent-token: 87ce937ca96d4f5aacc5ecdc93ad2ddeccff644e8fc7c99def29a0136749d2c4082d6e6900d682f1a083732444b8be69ef4dccd67a7d4b59c9354f4c9d93ef48725b8b845ae688b1b319deb99eb3b8d3a5886fd434182a85759b731da7ae536ed2b778191075dcc85147017af55aa5e49b9883d58643bf0d38ba1e514b5b9109f1e13d8ac17f67aca02ab5e6961fded4f4edbd52d3401424877e73f779cb0f1c84e75b913b283a7b79c47fb3f641620fc74941c2ffc55eef84" \
   -H "Content-Type: application/json" \
   -d '{
-    "title": "Process Transaction",
+    "title": "Search the flights and make an excel file",
     "description": "Process payment for order #123",
     "departmentId": "507f1f77bcf86cd799439013"
   }'
@@ -231,7 +231,7 @@ curl -X POST http://localhost:3000/api/task \
 ### Mark Task as Completed
 
 ```bash
-curl -X PATCH http://localhost:3000/api/task/507f1f77bcf86cd799439014 \
+curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bcf86cd799439014 \
   -H "x-agent-token: encrypted_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -242,7 +242,7 @@ curl -X PATCH http://localhost:3000/api/task/507f1f77bcf86cd799439014 \
 ### Get Department Statistics
 
 ```bash
-curl -X GET http://localhost:3000/api/department/507f1f77bcf86cd799439013
+curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/507f1f77bcf86cd799439013
 ```
 
 Response includes task counts and completion statistics.
@@ -433,7 +433,7 @@ GET `/api/department/:id` includes computed statistics:
 
 5. **Access API**
    ```
-   http://localhost:3000/api/agents/register
+   http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register
    ```
 
 ## Testing
@@ -448,7 +448,7 @@ You can test the APIs using:
 Example in browser:
 ```javascript
 // Register agent
-fetch('http://localhost:3000/api/agents/register', {
+fetch('http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({

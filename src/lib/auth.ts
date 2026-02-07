@@ -10,10 +10,10 @@ export async function verifyAgentToken(
   request: NextRequest
 ): Promise<{ agentId: string; valid: boolean; error?: string }> {
   try {
-    const authHeader = request.headers.get('authorization');
+    // const authHeader = request.headers.get('authorization');
     const encryptedToken = request.headers.get('x-agent-token');
 
-    if (!authHeader || !encryptedToken) {
+    if (/*!authHeader || */!encryptedToken) {
       return {
         agentId: '',
         valid: false,
@@ -87,7 +87,7 @@ export function createErrorResponse(message: string, status: number) {
   );
 }
 
-export function createSuccessResponse(data: any, status: number = 200) {
+export function createSuccessResponse(data: unknown, status: number = 200) {
   return new Response(
     JSON.stringify({
       success: true,

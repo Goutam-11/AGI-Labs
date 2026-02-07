@@ -1,116 +1,82 @@
+"use client"
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-const mockDepartments = [
-  {
-    name: 'Treasury',
-    agentCount: 12,
-    description: 'Financial operations and resource allocation',
-    activeOperations: 8
-  },
-  {
-    name: 'Defense',
-    agentCount: 8,
-    description: 'Security protocols and threat assessment',
-    activeOperations: 5
-  },
-  {
-    name: 'Research',
-    agentCount: 21,
-    description: 'Data analysis and strategic development',
-    activeOperations: 15
-  },
-  {
-    name: 'Infrastructure',
-    agentCount: 15,
-    description: 'System maintenance and optimization',
-    activeOperations: 11
-  },
-  {
-    name: 'Diplomacy',
-    agentCount: 9,
-    description: 'External relations and communication',
-    activeOperations: 6
-  },
-  {
-    name: 'Intelligence',
-    agentCount: 7,
-    description: 'Information gathering and pattern recognition',
-    activeOperations: 4
-  },
-];
+import { useSuspenseDepartments } from '@/hooks/use-routes';
+import { DepartmentCard } from '@/components/DepartmentCard';
+import Link from 'next/link';
 
 export default function DepartmentsPage() {
+  const { data: departments } = useSuspenseDepartments();
+  
+  const totalAgents = departments.reduce((sum, dept) => sum + (dept.agentCount || 0), 0);
+
   return (
-    <div className="container">
+    <div className="flex flex-col min-h-screen w-full bg-background">
       <Header />
 
-      <div className="hero">
-        <h1 style={{ fontSize: '32px' }}>DEPARTMENTS</h1>
-        <p className="secondary" style={{ marginTop: '16px' }}>
+      {/* Hero Section */}
+      <div className="text-center p-12 bg-card border border-destructive mb-8 shadow-lg">
+        <h1 className="text-5xl font-bold uppercase tracking-wider mb-2 text-destructive">DEPARTMENTS</h1>
+        <p className="text-muted-foreground mt-4 text-lg">
           Organizational structure of the agent population
         </p>
-      </div>
-
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-        gap: '20px',
-        marginBottom: '32px'
-      }}>
-        {mockDepartments.map((dept) => (
-          <div key={dept.name} style={{
-            background: '#141414',
-            border: '1px solid #ff2d2d',
-            padding: '24px',
-            boxShadow: '0 0 15px rgba(255, 45, 45, 0.15)',
-            position: 'relative'
-          }}>
-            {/* Department name */}
-            <div style={{
-              fontSize: '18px',
-              fontWeight: 600,
-              color: '#ff2d2d',
-              marginBottom: '16px',
-              textTransform: 'uppercase',
-              letterSpacing: '1px'
-            }}>
-              {dept.name}
-            </div>
-
-            {/* Description */}
-            <p className="secondary" style={{
-              fontSize: '13px',
-              marginBottom: '16px',
-              lineHeight: '1.6'
-            }}>
-              {dept.description}
-            </p>
-
-            {/* Stats */}
-            <div style={{ fontSize: '13px', marginTop: '16px' }}>
-              <div style={{ marginBottom: '8px' }}>
-                <span className="secondary">AGENTS:</span> {dept.agentCount}
-              </div>
-              <div>
-                <span className="secondary">ACTIVE OPS:</span> {dept.activeOperations}
-              </div>
-            </div>
-
-            {/* Corner accent */}
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              width: '40px',
-              height: '40px',
-              borderBottom: '1px solid #ff2d2d',
-              borderLeft: '1px solid #ff2d2d',
-              opacity: 0.3
-            }} />
+        <div className="flex justify-center gap-8 mt-8 text-sm">
+          <div>
+            <div className="text-2xl font-bold text-destructive">{departments.length}</div>
+            <div className="text-muted-foreground uppercase tracking-wider text-xs">Departments</div>
           </div>
-        ))}
+          <div className="border-l border-muted" />
+          <div>
+            <div className="text-2xl font-bold text-destructive">{totalAgents}</div>
+            <div className="text-muted-foreground uppercase tracking-wider text-xs">Total Agents</div>
+          </div>
+        </div>
       </div>
+
+      {/* Filter/Sort Info */}
+      <div className="max-w-7xl mx-auto w-full px-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+          <div>
+            <h2 className="text-2xl font-bold uppercase tracking-wider text-destructive">DEPARTMENT DIRECTORY</h2>
+            <p className="text-muted-foreground text-sm mt-1">Browse and explore all available departments</p>
+          </div>
+          <div className="text-right">
+            <p className="text-sm text-muted-foreground">
+              Showing <span className="text-destructive font-semibold">{departments.length}</span> departments
+            </p>
+          </div>
+        </div>
+
+        {/* Department Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {departments.length > 0 ? (
+            departments.map((dept) => (
+              <DepartmentCard key={dept.id} dept={dept} />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-16">
+              <p className="text-muted-foreground text-lg">No departments found</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4 bg-muted/5 mt-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-card border border-destructive p-8 md:p-12 text-center shadow-lg">
+            <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wider text-destructive mb-4">
+              Looking for Agents in a Specific Department?
+            </h2>
+            <p className="text-muted-foreground mb-8 text-lg">
+              Navigate to an individual department to see active agents and their assignments.
+            </p>
+            <Link href="/" className="inline-block px-8 py-3 bg-destructive text-background uppercase font-semibold tracking-wider hover:opacity-90 transition-opacity duration-200">
+              RETURN TO AGENTS
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

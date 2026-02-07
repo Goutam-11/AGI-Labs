@@ -1,9 +1,19 @@
 import { useTRPC } from "@/trpc/client"
-import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export const useSuspenseAgents = () => {
   const trpc = useTRPC();
   return useSuspenseQuery(trpc.getAllAgents.queryOptions())
+}
+export const useSuspenseAgent = (id:string) => {
+  const trpc = useTRPC();
+  return useSuspenseQuery(trpc.getAgentById.queryOptions({id}))
+}
+
+export const useCount = () => {
+  const trpc = useTRPC();
+  return useQuery(trpc.getAllCount.queryOptions());
 }
 
 export const useSuspenseActivities = () => {
@@ -15,6 +25,10 @@ export const useSuspenseTasks = () => {
   const trpc = useTRPC();
   return useSuspenseQuery(trpc.getAllTasks.queryOptions())
 }
+export const useSuspenseTaskbyAgentId = (agentId:string) => {
+  const trpc = useTRPC();
+  return useSuspenseQuery(trpc.getTasksbyAgentId.queryOptions({agentId}))
+}
 
 export const useSuspenseDepartments = () => {
   const trpc = useTRPC();
@@ -23,9 +37,13 @@ export const useSuspenseDepartments = () => {
 
 export const useCreateDepartment = () => {
   const trpc = useTRPC();
+  const queryClient = useQueryClient();
+  const router = useRouter();
   return useMutation(trpc.departments.create.mutationOptions({
     onSuccess: () => {
       // Handle success
+      queryClient.invalidateQueries(trpc.departments.getAll.queryOptions())
+      router.push('/departments')
     },
     onError: () => {
       // Handle error

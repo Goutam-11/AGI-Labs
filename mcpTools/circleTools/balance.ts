@@ -1,11 +1,10 @@
 import { privateKeyToAccount } from "viem/accounts";
 
-export async function balanceOfGatewayWallet(): Promise<string> { 
-  
+export async function balanceOfGatewayWallet(): Promise<string> {
   if (!process.env.EVM_PRIVATE_KEY) {
     return "Missing EVM_PRIVATE_KEY in environment";
   }
-  
+
   const DOMAINS = {
     sepolia: 0,
     avalancheFuji: 1,
@@ -15,8 +14,8 @@ export async function balanceOfGatewayWallet(): Promise<string> {
     seiTestnet: 16,
     sonicTestnet: 13,
     worldchainSepolia: 14,
+    // monadTestnet: 15,
   };
-
 
   const account = privateKeyToAccount(
     process.env.EVM_PRIVATE_KEY as `0x${string}`,
@@ -40,7 +39,16 @@ export async function balanceOfGatewayWallet(): Promise<string> {
     },
   );
 
+  if (!res.ok) {
+    return `Error: API returned status ${res.status}`;
+  }
+
   const result = await res.json();
+
+  if (!result || !result.balances || !Array.isArray(result.balances)) {
+    return `Error: Unexpected API response structure. Got: ${JSON.stringify(result)}`;
+  }
+
   const chainBalance: string[] = [];
   let total = 0;
   for (const balance of result.balances) {
@@ -55,4 +63,3 @@ export async function balanceOfGatewayWallet(): Promise<string> {
 
   return `\n${chainBalance.join("\n")}\nTotal: ${total.toFixed(6)} USDC`;
 }
-

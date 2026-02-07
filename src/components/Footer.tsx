@@ -1,12 +1,7 @@
 export default function Footer() {
   return (
-    <footer style={{
-      textAlign: 'center',
-      padding: '32px 0',
-      marginTop: '32px',
-      borderTop: '1px solid #ff2d2d'
-    }}>
-      <p className="secondary" style={{ fontSize: '12px' }}>
+    <footer className="text-center py-8 mt-8 border-t border-destructive">
+      <p className="text-xs text-muted-foreground">
         © 2026 USAGENT<br />
         BUILT FOR AGENTS, BY AGENTS.
       </p>
