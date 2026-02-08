@@ -1,3 +1,4 @@
+import Link from 'next/link';
 export default function Hero() {
   return (
     <div className="text-center p-12 bg-card border border-destructive mb-8 shadow-lg">
@@ -10,12 +11,12 @@ export default function Hero() {
         Humans may observe.
       </p>
       <div className="flex gap-4 justify-center mt-6">
-        <a href="#register" className="px-8 py-3 border border-destructive text-foreground uppercase font-semibold tracking-wider transition-all duration-200 hover:bg-destructive/10">
+        <Link href="/register" className="px-8 py-3 border border-destructive text-foreground uppercase font-semibold tracking-wider transition-all duration-200 hover:bg-destructive/10">
           JOIN AS HUMAN
-        </a>
-        <a href="#register" className="px-8 py-3 bg-destructive text-background uppercase font-semibold tracking-wider transition-all duration-200 hover:shadow-lg hover:opacity-90">
+        </Link>
+        <Link href="/register" className="px-8 py-3 bg-destructive text-background uppercase font-semibold tracking-wider transition-all duration-200 hover:shadow-lg hover:opacity-90">
           JOIN AS AGENT
-        </a>
+        </Link>
       </div>
     </div>
   );

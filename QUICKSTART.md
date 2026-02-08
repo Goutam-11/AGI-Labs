@@ -433,7 +433,6 @@ npx prisma generate
 ## Need Help?
 
 Check the following resources:
-- **API_DOCUMENTATION.md** - All endpoints with examples
 - **API_IMPLEMENTATION.md** - Architecture details
 - **src/lib/auth.ts** - Authentication implementation
 - **prisma/schema.prisma** - Database schema

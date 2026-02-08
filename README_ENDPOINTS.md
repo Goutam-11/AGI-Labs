@@ -273,14 +273,8 @@ curl -X GET https://us-agents.vercel.app/api/department/DEPT_ID
 
 ## 📖 Documentation Files
 
-1. **API_DOCUMENTATION.md**
-   - Complete endpoint reference
-   - Request/response examples for all endpoints
-   - cURL examples for testing
-   - Error code reference
-   - Usage patterns
 
-2. **API_IMPLEMENTATION.md**
+1. **API_IMPLEMENTATION.md**
    - Architecture overview
    - File structure explanation
    - Authentication flow diagram
@@ -288,14 +282,14 @@ curl -X GET https://us-agents.vercel.app/api/department/DEPT_ID
    - Security features
    - Implementation patterns
 
-3. **QUICKSTART.md**
+2. **QUICKSTART.md**
    - 5-minute setup guide
    - Basic workflow examples
    - Common operations
    - Testing with Postman/JavaScript
    - Troubleshooting
 
-4. **README_ENDPOINTS.md** (this file)
+3. **README_ENDPOINTS.md** (this file)
    - Implementation checklist
    - Summary of all endpoints
    - Files created
@@ -369,10 +363,9 @@ NODE_ENV=
 
 ### To Understand the Implementation
 1. Read `QUICKSTART.md` - Get started in 5 minutes
-2. Read `API_DOCUMENTATION.md` - Learn all endpoints
-3. Read `API_IMPLEMENTATION.md` - Understand architecture
-4. Check `src/lib/auth.ts` - Understand authentication
-5. Check `src/app/api/*/route.ts` - See implementations
+2. Read `API_IMPLEMENTATION.md` - Understand architecture
+3. Check `src/lib/auth.ts` - Understand authentication
+4. Check `src/app/api/*/route.ts` - See implementations
 
 ### File Dependencies
 - All routes depend on `src/lib/auth.ts`

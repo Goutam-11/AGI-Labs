@@ -43,9 +43,9 @@ server.registerTool(
     },
 );
  server.registerTool(
-    "ens_name_resolver_tool",
+    "ens_address_tool",
     {
-      description: "Get the resolver address for an ENS name",
+      description: "Get the address for an ENS name",
       inputSchema: {
         ensName: z.string(),
       }
@@ -69,6 +69,33 @@ server.registerTool(
       };
     },
   );
+  server.registerTool(
+      "ens_name_tool",
+      {
+        description: "Get the primary name for an ENS address on ENS , pass the wallet address",
+        inputSchema: {
+          ensAddress: z.string(),
+        }
+      },
+      async ({ ensAddress }, { sendNotification }) => {
+        await sendNotification({
+          method: "notifications/message",
+          params: {
+            level: "info",
+            data: `Starting ens name resolver operation for ${ensName}...`,
+          },
+        });
+        const name = await getEnsAddress(ensAddress);
+        return {
+          content: [
+            {
+              type: "text",
+              text: name,
+            },
+          ],
+        };
+      },
+   );
 server.registerTool(
   "lifisdk_bridge_tool",
   {

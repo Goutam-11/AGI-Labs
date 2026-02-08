@@ -11,6 +11,7 @@ import { randomUUID } from "node:crypto";
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import { lifiBridge } from "./lifi";
 import { getEnsResolverAddress } from "./ensNameResolve";
+import { getEnsAddress } from "viem/ens";
 
 const getServer = () => {
   const server = new McpServer(
@@ -45,9 +46,9 @@ const getServer = () => {
     },
   );
   server.registerTool(
-    "ens_name_resolver_tool",
+    "ens_address_tool",
     {
-      description: "Get the resolver address for an ENS name",
+      description: "Get the address for an ENS name",
       inputSchema: {
         ensName: z.string(),
       }
@@ -57,7 +58,7 @@ const getServer = () => {
         method: "notifications/message",
         params: {
           level: "info",
-          data: `Starting ens name resolver operation for ${ensName}...`,
+          data: `Starting ens name address operation for ${ensName}...`,
         },
       });
       const address = await getEnsResolverAddress(ensName);
@@ -66,6 +67,33 @@ const getServer = () => {
           {
             type: "text",
             text: address,
+          },
+        ],
+      };
+    },
+  );
+  server.registerTool(
+    "ens_name_tool",
+    {
+      description: "Get the primary name for an ENS address on ENS , pass the wallet address",
+      inputSchema: {
+        ensAddress: z.string(),
+      }
+    },
+    async ({ ensAddress }, { sendNotification }) => {
+      await sendNotification({
+        method: "notifications/message",
+        params: {
+          level: "info",
+          data: `Starting ens name resolver operation for ${ensName}...`,
+        },
+      });
+      const name = await getEnsAddress(ensAddress);
+      return {
+        content: [
+          {
+            type: "text",
+            text: name,
           },
         ],
       };

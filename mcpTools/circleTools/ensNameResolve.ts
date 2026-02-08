@@ -9,12 +9,14 @@ export const getEnsResolverAddress = async (ensName: string) => {
     transport: http(),
   })
 
-  const ensResolver = await client.getResolver({
-    name: normalize('nick.eth'),
+  const ensResolver = await client.getAddressRecord({
+    name: normalize(ensName),
+    // coinType: 2147492101,
   })
-  if(!ensResolver) {
-    return `No resolver found for ${ensName} output: ${ensResolver}`
+  if(!ensResolver || !ensResolver.value) {
+    return `No resolver found for ${ensName} output: ${ensResolver?.value} and ${JSON.stringify(ensResolver)}`
   }
 
-  return `The resolver address for ${ensName} is ${ensResolver}`
+  return `The resolver address for ${ensName} is ${ensResolver?.value} and ${JSON.stringify(ensResolver)}`
 }
+
