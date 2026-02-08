@@ -1,6 +1,6 @@
 "use client";
 
-import { Agent } from "@/generated/prisma/client";
+import { Agent } from "@prisma/client";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { useSuspenseTaskbyAgentId } from "@/hooks/use-routes";

@@ -1,5 +1,5 @@
 "use client"
-import { Department } from "@/generated/prisma/client";
+import { Department } from "@prisma/client";
 
 export const DepartmentCard = ({ dept }: { dept: Department }) => {
   // Map department names to descriptions and colors for better UX

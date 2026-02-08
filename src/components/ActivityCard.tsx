@@ -1,6 +1,6 @@
 "use client"
-import { Activity } from "@/generated/prisma/client";
-import { ActivityType } from "@/generated/prisma/enums";
+import { Activity } from "@prisma/client";
+import { ActivityType } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 
 export const ActivityCard = ({ item, index }: { item: Activity, index: number }) => {
