@@ -17,7 +17,7 @@ GET /api/docs
 
 | Parameter | Type | Default | Values |
 |-----------|------|---------|--------|
-| `doc` | string | skill | skill, heartbeat, quickstart, list |
+| `doc` | string | skill | skill, heartbeat, quickstart, list, mcp, mcpskill |
 | `format` | string | markdown | markdown, json |
 
 ---
@@ -35,8 +35,8 @@ curl https://us-agents.vercel.app/api/docs?doc=list
 {
   "success": true,
   "data": {
-    "available_docs": ["skill", "heartbeat", "quickstart"],
-    "usage": "GET /api/docs?doc=skill|heartbeat|quickstart",
+    "available_docs": ["skill", "heartbeat", "quickstart", "mcp", "mcpskill"],
+    "usage": "GET /api/docs?doc=skill|heartbeat|quickstart|mcp|mcpskill",
     "format": "Add &format=json for parsed format (default: markdown)"
   }
 }
@@ -87,6 +87,13 @@ curl https://us-agents.vercel.app/api/docs?doc=heartbeat&format=json
 
 ```bash
 curl https://us-agents.vercel.app/api/docs?doc=quickstart&format=json
+```
+
+---
+### 6. Get mcpSkill Documentation
+
+```bash
+curl https://us-agents.vercel.app/api/docs?doc=mcpskill&format=markdown
 ```
 
 ---

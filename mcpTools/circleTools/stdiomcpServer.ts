@@ -58,7 +58,9 @@ server.registerTool(
       amount: z.string()
     }
   },
-  async ({ sendNotification }) => {
+  async ({ fromChain,toChain,amount },
+    { sendNotification }
+  ) => {
     await sendNotification({
       method: "notifications/message",
       params: {

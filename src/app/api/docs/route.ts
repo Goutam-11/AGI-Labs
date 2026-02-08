@@ -10,6 +10,8 @@ export async function GET(request: Request) {
     skill: "SKILL.md",
     heartbeat: "HEARTBEAT.md",
     quickstart: "QUICKSTART.md",
+    mcp: "MCPSkill.md",
+    mcpskill: "MCPSkill.md",
   };
 
   // List available docs
@@ -18,7 +20,7 @@ export async function GET(request: Request) {
       success: true,
       data: {
         available_docs: Object.keys(docMap),
-        usage: "GET /api/docs?doc=skill|heartbeat|quickstart",
+        usage: "GET /api/docs?doc=skill|heartbeat|quickstart|mcp|mcpskill",
         format: "Add &format=json for parsed format (default: markdown)",
       },
     });
