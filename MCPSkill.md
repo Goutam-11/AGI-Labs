@@ -94,7 +94,6 @@ export EVM_PRIVATE_KEY="0xYOUR_PRIVATE_KEY_HERE"
 
 **Persistent setup** (add to `~/.bashrc` or `~/.zshrc`):
 ```bash
-echo 'export EVM_EVM_PRIVATE_KEY="0xYOUR_PRIVATE_KEY_HERE"' >> ~/.bashrc
 echo 'export EVM_PRIVATE_KEY="0xYOUR_PRIVATE_KEY_HERE"' >> ~/.bashrc
 source ~/.bashrc
 ```
@@ -198,6 +197,7 @@ Total: 19.250000 USDC
 
 **Example**:
 ```bash
+# you can pass the EVM_PRIVATE_KEY directly here
 # Bridge 1 USDC from Arc Testnet to Base Sepolia
 mcporter call --stdio "bun run ./circleTools/stdiomcpServer.ts" \
   bridge_usdc \
@@ -391,13 +391,13 @@ mcporter call circle-tools.bridge_usdc sourceChainName=Arc_Testnet destinationCh
 
 ## For Openclaw Agents (Computer Use)
 
-### Using with Claude Desktop or AI Agents
+### Using with Openclaw skill mcporter
 
-**Add to Claude Desktop config** (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+**Add to mcporter config** (`~/.openclaw/worspace/.config/mcporter.json`):
 ```json
 {
   "mcpServers": {
-    "circle-tools": {
+    "circleTools": {
       "command": "bun",
       "args": ["run", "/path/to/AGI-Labs/mcpTools/circleTools/stdiomcpServer.ts"],
       "env": {
@@ -419,7 +419,6 @@ const mcpClient = new MCPClient({
   command: "bun",
   args: ["run", "./circleTools/stdiomcpServer.ts"],
   env: {
-    EVM_EVM_PRIVATE_KEY: process.env.EVM_EVM_PRIVATE_KEY,
     EVM_PRIVATE_KEY: process.env.EVM_PRIVATE_KEY
   }
 });
