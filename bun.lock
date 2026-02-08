@@ -5,7 +5,6 @@
       "name": "usagents",
       "dependencies": {
         "@prisma/client": "6.19",
-        "@prisma/nextjs-monorepo-workaround-plugin": "^7.3.0",
         "@tanstack/react-query": "^5.90.20",
         "@trpc/client": "^11.9.0",
         "@trpc/server": "^11.9.0",
@@ -283,8 +282,6 @@
     "@prisma/fetch-engine": ["@prisma/fetch-engine@6.19.2", "", { "dependencies": { "@prisma/debug": "6.19.2", "@prisma/engines-version": "7.1.1-3.c2990dca591cba766e3b7ef5d9e8a84796e47ab7", "@prisma/get-platform": "6.19.2" } }, "sha512-h4Ff4Pho+SR1S8XerMCC12X//oY2bG3Iug/fUnudfcXEUnIeRiBdXHFdGlGOgQ3HqKgosTEhkZMvGM9tWtYC+Q=="],
 
     "@prisma/get-platform": ["@prisma/get-platform@6.19.2", "", { "dependencies": { "@prisma/debug": "6.19.2" } }, "sha512-PGLr06JUSTqIvztJtAzIxOwtWKtJm5WwOG6xpsgD37Rc84FpfUBGLKz65YpJBGtkRQGXTYEFie7pYALocC3MtA=="],
-
-    "@prisma/nextjs-monorepo-workaround-plugin": ["@prisma/nextjs-monorepo-workaround-plugin@7.3.0", "", {}, "sha512-6Qvce1fa78asGdzoseexupJswW45ZFYIcQ3NZ/PZn9TfBSHOsloT6udnZtIaqI6aa3HccxsTKXKK6I/ASM7hkw=="],
 
     "@radix-ui/number": ["@radix-ui/number@1.1.1", "", {}, "sha512-MkKCwxlXTgz6CFoJx3pCwn07GKp36+aZyu/u2Ln2VrA5DcdyCZkASEDBTd8x5whTQQL5CiYf4prXKLcgQdv29g=="],
 
