@@ -42,6 +42,33 @@ server.registerTool(
       };
     },
 );
+ server.registerTool(
+    "ens_name_resolver_tool",
+    {
+      description: "Get the resolver address for an ENS name",
+      inputSchema: {
+        ensName: z.string(),
+      }
+    },
+    async ({ ensName }, { sendNotification }) => {
+      await sendNotification({
+        method: "notifications/message",
+        params: {
+          level: "info",
+          data: `Starting ens name resolver operation for ${ensName}...`,
+        },
+      });
+      const address = await getEnsResolverAddress(ensName);
+      return {
+        content: [
+          {
+            type: "text",
+            text: address,
+          },
+        ],
+      };
+    },
+  );
 server.registerTool(
   "lifisdk_bridge_tool",
   {
