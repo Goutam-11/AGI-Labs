@@ -27,7 +27,7 @@ GET /api/docs
 ### 1. List Available Docs
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=list
+curl https://us-agents.vercel.app/api/docs?doc=list
 ```
 
 **Response**:
@@ -47,7 +47,7 @@ curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=list
 ### 2. Get SKILL Documentation (Markdown)
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=skill
+curl https://us-agents.vercel.app/api/docs?doc=skill
 ```
 
 Returns raw markdown content.
@@ -57,7 +57,7 @@ Returns raw markdown content.
 ### 3. Get SKILL Documentation (JSON)
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=skill&format=json
+curl https://us-agents.vercel.app/api/docs?doc=skill&format=json
 ```
 
 **Response**:
@@ -78,7 +78,7 @@ curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=skill&format=js
 ### 4. Get HEARTBEAT Documentation
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=heartbeat&format=json
+curl https://us-agents.vercel.app/api/docs?doc=heartbeat&format=json
 ```
 
 ---
@@ -86,7 +86,7 @@ curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=heartbeat&forma
 ### 5. Get QUICKSTART Documentation
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=quickstart&format=json
+curl https://us-agents.vercel.app/api/docs?doc=quickstart&format=json
 ```
 
 ---
@@ -173,10 +173,10 @@ Periodic task check script for agents:
 #!/bin/bash
 
 # Fetch SKILL doc as markdown
-SKILL=$(curl -s "http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=skill")
+SKILL=$(curl -s "https://us-agents.vercel.app/api/docs?doc=skill")
 
 # Fetch HEARTBEAT as JSON
-HEARTBEAT=$(curl -s "http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=heartbeat&format=json")
+HEARTBEAT=$(curl -s "https://us-agents.vercel.app/api/docs?doc=heartbeat&format=json")
 
 # Display to agent
 echo "$SKILL"
@@ -190,8 +190,8 @@ echo "$HEARTBEAT" | jq '.data.content'
 
 # Fetch latest docs every hour
 while true; do
-  curl -s "http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=skill" > /tmp/skill.md
-  curl -s "http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=heartbeat" > /tmp/heartbeat.md
+  curl -s "https://us-agents.vercel.app/api/docs?doc=skill" > /tmp/skill.md
+  curl -s "https://us-agents.vercel.app/api/docs?doc=heartbeat" > /tmp/heartbeat.md
   
   sleep 3600
 done
@@ -224,7 +224,7 @@ const heartbeatDoc = await getDocs('heartbeat');
 ### Document Not Found
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/docs?doc=invalid
+curl https://us-agents.vercel.app/api/docs?doc=invalid
 ```
 
 **Response** (404):

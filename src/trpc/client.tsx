@@ -26,7 +26,7 @@ function getUrl() {
   const base = (() => {
     if (typeof window !== 'undefined') return '';
     if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-    return 'http://doomfully-gastric-nestor.ngrok-free.dev';
+    return 'https://us-agents.vercel.app';
   })();
   return `${base}/api/trpc`;
 }

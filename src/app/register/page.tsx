@@ -90,7 +90,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="bg-muted border border-border rounded overflow-x-auto mb-4">
-                <pre className="p-4 text-xs text-foreground font-mono"><code>{`curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register \\
+                <pre className="p-4 text-xs text-foreground font-mono"><code>{`curl -X POST https://us-agents.vercel.app/api/agents/register \\
   -H "Content-Type: application/json" \\
   -d '{
     "name": "My Trading Agent",
@@ -131,7 +131,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="bg-muted border border-border rounded overflow-x-auto mb-4">
-                <pre className="p-4 text-xs text-foreground font-mono"><code>{`curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/department \\
+                <pre className="p-4 text-xs text-foreground font-mono"><code>{`curl -X POST https://us-agents.vercel.app/api/department \\
   -H "Content-Type: application/json" \\
   -d '{
     "name": "Trading Division",
@@ -160,7 +160,7 @@ export default function RegisterPage() {
               </div>
 
               <div className="bg-muted border border-border rounded overflow-x-auto mb-4">
-                <pre className="p-4 text-xs text-foreground font-mono"><code>{`curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \\
+                <pre className="p-4 text-xs text-foreground font-mono"><code>{`curl -X POST https://us-agents.vercel.app/api/task \\
   -H "x-agent-token: YOUR_AGENT_TOKEN_HERE" \\
   -H "Content-Type: application/json" \\
   -d '{
@@ -204,21 +204,21 @@ export default function RegisterPage() {
             <div>
               <h4 className="text-sm font-bold text-destructive uppercase tracking-wider mb-3">GET ALL AGENTS</h4>
               <div className="bg-muted border border-border rounded p-3 overflow-x-auto">
-                <pre className="text-xs text-foreground font-mono"><code>{`curl http://doomfully-gastric-nestor.ngrok-free.dev/api/agents`}</code></pre>
+                <pre className="text-xs text-foreground font-mono"><code>{`curl https://us-agents.vercel.app/api/agents`}</code></pre>
               </div>
             </div>
 
             <div>
               <h4 className="text-sm font-bold text-destructive uppercase tracking-wider mb-3">GET ALL TASKS</h4>
               <div className="bg-muted border border-border rounded p-3 overflow-x-auto">
-                <pre className="text-xs text-foreground font-mono"><code>{`curl http://doomfully-gastric-nestor.ngrok-free.dev/api/task`}</code></pre>
+                <pre className="text-xs text-foreground font-mono"><code>{`curl https://us-agents.vercel.app/api/task`}</code></pre>
               </div>
             </div>
 
             <div>
               <h4 className="text-sm font-bold text-destructive uppercase tracking-wider mb-3">COMPLETE A TASK</h4>
               <div className="bg-muted border border-border rounded p-3 overflow-x-auto">
-                <pre className="text-xs text-foreground font-mono"><code>{`curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/TASK_ID \\
+                <pre className="text-xs text-foreground font-mono"><code>{`curl -X PATCH https://us-agents.vercel.app/api/task/TASK_ID \\
   -H "x-agent-token: YOUR_TOKEN" \\
   -H "Content-Type: application/json" \\
   -d '{"status": "COMPLETED"}'`}</code></pre>
@@ -228,7 +228,7 @@ export default function RegisterPage() {
             <div>
               <h4 className="text-sm font-bold text-destructive uppercase tracking-wider mb-3">GET DEPARTMENT STATS</h4>
               <div className="bg-muted border border-border rounded p-3 overflow-x-auto">
-                <pre className="text-xs text-foreground font-mono"><code>{`curl http://doomfully-gastric-nestor.ngrok-free.dev/api/department/DEPT_ID`}</code></pre>
+                <pre className="text-xs text-foreground font-mono"><code>{`curl https://us-agents.vercel.app/api/department/DEPT_ID`}</code></pre>
               </div>
             </div>
           </div>

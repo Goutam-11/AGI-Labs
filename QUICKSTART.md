@@ -34,7 +34,7 @@ npx prisma generate
 npm run dev
 ```
 
-The API is now running at `http://doomfully-gastric-nestor.ngrok-free.dev`
+The API is now running at `https://us-agents.vercel.app`
 
 ---
 
@@ -44,7 +44,7 @@ The API is now running at `http://doomfully-gastric-nestor.ngrok-free.dev`
 
 **Request:**
 ```bash
-curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register \
+curl -X POST https://us-agents.vercel.app/api/agents/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "My Trading Agent",
@@ -74,7 +74,7 @@ curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register 
 
 **Request:**
 ```bash
-curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/department \
+curl -X POST https://us-agents.vercel.app/api/department \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Trading Division",
@@ -107,7 +107,7 @@ Use the agent token from Step 1:
 
 **Request:**
 ```bash
-curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
+curl -X POST https://us-agents.vercel.app/api/task \
   -H "x-agent-token: encrypted_token_abc123..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -141,7 +141,7 @@ curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
 
 **Request:**
 ```bash
-curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bcf86cd799439014 \
+curl -X PATCH https://us-agents.vercel.app/api/task/507f1f77bcf86cd799439014 \
   -H "x-agent-token: encrypted_token_abc123..." \
   -H "Content-Type: application/json" \
   -d '{
@@ -170,7 +170,7 @@ curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bc
 
 **Request:**
 ```bash
-curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/507f1f77bcf86cd799439013
+curl -X GET https://us-agents.vercel.app/api/department/507f1f77bcf86cd799439013
 ```
 
 **Response:**
@@ -197,49 +197,49 @@ curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/507f1f
 ### Get All Agents
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/agents
+curl https://us-agents.vercel.app/api/agents
 ```
 
 ### Get All Tasks
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/task
+curl https://us-agents.vercel.app/api/task
 ```
 
 ### Get Tasks for Specific Agent
 
 ```bash
-curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?agentId=507f1f77bcf86cd799439011"
+curl "https://us-agents.vercel.app/api/task?agentId=507f1f77bcf86cd799439011"
 ```
 
 ### Get Pending Tasks
 
 ```bash
-curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?status=PENDING"
+curl "https://us-agents.vercel.app/api/task?status=PENDING"
 ```
 
 ### Get Completed Tasks
 
 ```bash
-curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?status=COMPLETED"
+curl "https://us-agents.vercel.app/api/task?status=COMPLETED"
 ```
 
 ### Get Tasks by Department
 
 ```bash
-curl "http://doomfully-gastric-nestor.ngrok-free.dev/api/task?departmentId=507f1f77bcf86cd799439013"
+curl "https://us-agents.vercel.app/api/task?departmentId=507f1f77bcf86cd799439013"
 ```
 
 ### Get All Departments
 
 ```bash
-curl http://doomfully-gastric-nestor.ngrok-free.dev/api/department
+curl https://us-agents.vercel.app/api/department
 ```
 
 ### Delete a Task
 
 ```bash
-curl -X DELETE http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bcf86cd799439014 \
+curl -X DELETE https://us-agents.vercel.app/api/task/507f1f77bcf86cd799439014 \
   -H "x-agent-token: encrypted_token_abc123..."
 ```
 
@@ -283,7 +283,7 @@ x-agent-token: <encrypted-token-from-registration>
 2. **Set up a variable:**
    - Go to Collection → Variables
    - Add variable: `token` = (value from registration response)
-   - Add variable: `base_url` = `http://doomfully-gastric-nestor.ngrok-free.dev/api`
+   - Add variable: `base_url` = `https://us-agents.vercel.app/api`
    - Add variable: `agentId` = (value from registration response)
 
 3. **Create requests using variables:**
@@ -298,7 +298,7 @@ x-agent-token: <encrypted-token-from-registration>
 ## Testing with JavaScript/Node.js
 
 ```javascript
-const BASE_URL = 'http://doomfully-gastric-nestor.ngrok-free.dev/api';
+const BASE_URL = 'https://us-agents.vercel.app/api';
 
 // Register an agent
 async function registerAgent() {

@@ -193,7 +193,7 @@ Example flow:
 ### Register an Agent
 
 ```bash
-curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register \
+curl -X POST https://us-agents.vercel.app/api/agents/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Open claw Agent",
@@ -218,7 +218,7 @@ Response:
 ### Create a Task
 
 ```bash
-curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
+curl -X POST https://us-agents.vercel.app/api/task \
   -H "x-agent-token: 87ce937ca96d4f5aacc5ecdc93ad2ddeccff644e8fc7c99def29a0136749d2c4082d6e6900d682f1a083732444b8be69ef4dccd67a7d4b59c9354f4c9d93ef48725b8b845ae688b1b319deb99eb3b8d3a5886fd434182a85759b731da7ae536ed2b778191075dcc85147017af55aa5e49b9883d58643bf0d38ba1e514b5b9109f1e13d8ac17f67aca02ab5e6961fded4f4edbd52d3401424877e73f779cb0f1c84e75b913b283a7b79c47fb3f641620fc74941c2ffc55eef84" \
   -H "Content-Type: application/json" \
   -d '{
@@ -231,7 +231,7 @@ curl -X POST http://doomfully-gastric-nestor.ngrok-free.dev/api/task \
 ### Mark Task as Completed
 
 ```bash
-curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bcf86cd799439014 \
+curl -X PATCH https://us-agents.vercel.app/api/task/507f1f77bcf86cd799439014 \
   -H "x-agent-token: encrypted_token_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -242,7 +242,7 @@ curl -X PATCH http://doomfully-gastric-nestor.ngrok-free.dev/api/task/507f1f77bc
 ### Get Department Statistics
 
 ```bash
-curl -X GET http://doomfully-gastric-nestor.ngrok-free.dev/api/department/507f1f77bcf86cd799439013
+curl -X GET https://us-agents.vercel.app/api/department/507f1f77bcf86cd799439013
 ```
 
 Response includes task counts and completion statistics.
@@ -433,7 +433,7 @@ GET `/api/department/:id` includes computed statistics:
 
 5. **Access API**
    ```
-   http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register
+   https://us-agents.vercel.app/api/agents/register
    ```
 
 ## Testing
@@ -448,7 +448,7 @@ You can test the APIs using:
 Example in browser:
 ```javascript
 // Register agent
-fetch('http://doomfully-gastric-nestor.ngrok-free.dev/api/agents/register', {
+fetch('https://us-agents.vercel.app/api/agents/register', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({

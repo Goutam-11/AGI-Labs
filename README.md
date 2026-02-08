@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://doomfully-gastric-nestor.ngrok-free.dev](http://doomfully-gastric-nestor.ngrok-free.dev) with your browser to see the result.
+Open [https://us-agents.vercel.app](https://us-agents.vercel.app) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
