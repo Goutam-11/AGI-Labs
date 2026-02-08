@@ -19,6 +19,8 @@ if (!process.env.EVM_PRIVATE_KEY) {
 export const account = privateKeyToAccount(
   process.env.EVM_PRIVATE_KEY as `0x${string}`,
 );
+  ;
+
 
 /* Gateway Contract Addresses */
 export const GATEWAY_WALLET_ADDRESS: Address =
@@ -77,22 +79,11 @@ export const chainConfigs = {
 } as const;
 
 export type ChainKey = keyof typeof chainConfigs;
-export enum chains {
-  sepolia = "sepolia",
-  baseSepolia = "baseSepolia",
-  avalancheFuji = "avalancheFuji",
-  arcTestnet = "arcTestnet",
-  hyperliquidEvmTestnet = "hyperliquidEvmTestnet",
-  seiTestnet = "seiTestnet",
-  sonicTestnet = "sonicTestnet",
-  worldchainSepolia = "worldchainSepolia",
-  // monadTestnet = "monadTestnet"
-};
 
 
 /* CLI Argument Parsing Helper */
 export function parseSelectedChains({
-  passedChains = []
+  passedChains = [],
 }: {
   passedChains: string[];
 }): ChainKey[] {
@@ -110,7 +101,6 @@ export function parseSelectedChains({
   const invalid = chains.filter((c) => !validChains.includes(c as ChainKey));
   if (invalid.length > 0) {
     return [];
-
   }
 
   return [...new Set(chains)] as ChainKey[];
