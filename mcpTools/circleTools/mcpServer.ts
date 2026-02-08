@@ -229,7 +229,7 @@ const httpServer = http.createServer(async (req, res) => {
         res.end(
           JSON.stringify({
             message: "Invalid Request",
-            data: JSON.parse(body),
+            data: body,
           }),
         );
         return;
