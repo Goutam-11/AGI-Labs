@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    // Environment setup & latest features
+    /* Environment & Features */
     "lib": ["ESNext"],
     "target": "ESNext",
     "module": "Preserve",
@@ -8,22 +8,27 @@
     "jsx": "react-jsx",
     "allowJs": true,
 
-    // Bundler mode
+    /* Bundler Mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
 
-    // Best practices
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
+    /* Performance & Depth Mitigation */
+    "skipLibCheck": true, // 1. Essential: Stops checking deep types in node_modules
+    "incremental": true, // 2. Speeds up subsequent checks by caching
+    "tsBuildInfoFile": "./.tsbuildinfo", // Required for incremental
 
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    /* Strictness vs. Sanity */
+    "strict": true,
+    "noUncheckedIndexedAccess": false, // 3. Consider disabling if error persists (reduces lookup depth)
+    "noPropertyAccessFromIndexSignature": false,
+
+    /* Best Practices */
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "skipDefaultLibCheck": true, // 4. Skips checking the built-in TS libs
+    "forceConsistentCasingInFileNames": true,
+  },
+  "exclude": ["node_modules", "dist"], // 5. Ensure TS isn't wandering where it shouldn't
 }

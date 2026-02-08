@@ -10,6 +10,7 @@ import http from "node:http";
 import { randomUUID } from "node:crypto";
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import { lifiBridge } from "./lifi";
+import { getEnsResolverAddress } from "./ensNameResolve";
 
 const getServer = () => {
   const server = new McpServer(
@@ -38,6 +39,33 @@ const getServer = () => {
           {
             type: "text",
             text: balance,
+          },
+        ],
+      };
+    },
+  );
+  server.registerTool(
+    "ens_name_resolver_tool",
+    {
+      description: "Get the resolver address for an ENS name",
+      inputSchema: {
+        ensName: z.string(),
+      }
+    },
+    async ({ ensName }, { sendNotification }) => {
+      await sendNotification({
+        method: "notifications/message",
+        params: {
+          level: "info",
+          data: `Starting ens name resolver operation for ${ensName}...`,
+        },
+      });
+      const address = await getEnsResolverAddress(ensName);
+      return {
+        content: [
+          {
+            type: "text",
+            text: address,
           },
         ],
       };
