@@ -243,7 +243,7 @@ const httpServer = http.createServer(async (req, res) => {
     }
   });
 });
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 httpServer.listen(PORT, () => {
   console.log(`Circle MCP Server (Streamable HTTP) running on port ${PORT}`);
 });
