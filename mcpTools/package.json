@@ -1,6 +1,14 @@
 {
   "name": "mcptools",
   "private": true,
+  "scripts": {
+    "remote": "bun circleTools/mcpServer.ts",
+    "stdio": "bun circleTools/stdiomcpServer.ts",
+    "buildRemote": "bun build circleTools/mcpServer.ts --outdir dist --bundle --target node",
+    "buildStdio": "bun build circleTools/stdiomcpServer.ts --outdir dist --bundle --target node",
+    "startRemote": "bun dist/mcpServer.js",
+    "startStdio": "bun dist/stdiomcpServer.js"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -10,6 +18,7 @@
   "dependencies": {
     "@circle-fin/adapter-viem-v2": "^1.4.0",
     "@circle-fin/bridge-kit": "^1.5.0",
+    "@lifi/sdk": "^3.15.5",
     "@modelcontextprotocol/sdk": "^1.26.0",
     "viem": "^2.45.1"
   }

@@ -43,15 +43,16 @@ export async function balanceOfGatewayWallet(): Promise<string> {
     return `Error: API returned status ${res.status}`;
   }
 
-  const result = await res.json();
+  const result: any = await res.json();
+  
 
-  if (!result || !result.balances || !Array.isArray(result.balances)) {
+  if (!result || !result?.balances || !Array.isArray(result?.balances)) {
     return `Error: Unexpected API response structure. Got: ${JSON.stringify(result)}`;
   }
 
   const chainBalance: string[] = [];
   let total = 0;
-  for (const balance of result.balances) {
+  for (const balance of result?.balances) {
     const chain =
       Object.keys(DOMAINS).find(
         (key) => DOMAINS[key as keyof typeof DOMAINS] === balance.domain,
@@ -63,3 +64,5 @@ export async function balanceOfGatewayWallet(): Promise<string> {
 
   return `\n${chainBalance.join("\n")}\nTotal: ${total.toFixed(6)} USDC`;
 }
+
+

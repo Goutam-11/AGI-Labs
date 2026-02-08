@@ -88,3 +88,4 @@ export async function depositToGatewayWallet({
   }
   return "No chains were processed"
 }
+   ;

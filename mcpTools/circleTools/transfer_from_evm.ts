@@ -190,7 +190,7 @@ export async function transferFromEVM({
     return `Gateway API error: ${response.status} ${text}`;
   }
 
-  const json = await response.json();
+  const json: any = await response.json();
  
   const attestation = json?.attestation;
   const operatorSig = json?.signature;
@@ -230,3 +230,4 @@ export async function transferFromEVM({
   return `Minted ${formatUnits(totalMinted, 6)} USDC
   Mint transaction hash (${destinationChain}): ${mintTx}`;
 }
+
